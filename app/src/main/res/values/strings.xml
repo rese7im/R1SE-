@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">R1SE_AppDev</string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="loginText">Login</string>
+    <string name="emailLog">Email</string>
+    <string name="passwordLog">Password</string>
+    <string name="loginBtn">Login</string>
+    <string name="don_t_have_an_account_register">Don\'t have an account? Register</string>
+    <string name="registerText">Register</string>
+    <string name="emailReg">Email</string>
+    <string name="passwordReg">Password</string>
+    <string name="confirm_passwordReg">Confirm Password</string>
+    <string name="registerBtn">Register</string>
+    <string name="already_have_an_account_login">Already have an account? Login</string>
+    <string name="usernameReg">Username</string>
+    <string name="enter_item">Enter item</string>
+    <string name="enter_price">Enter price</string>
+    <string name="add_item">Add item</string>
+    <string name="show_items">Show items</string>
+</resources>
