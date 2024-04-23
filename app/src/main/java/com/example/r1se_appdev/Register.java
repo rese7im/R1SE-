@@ -6,6 +6,7 @@ import android.text.TextUtils;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -25,16 +26,30 @@ public class Register extends AppCompatActivity {
     EditText editTextUsername, editTextEmail, editTextPassword;
     Button buttonRegister;
     String username, email, password;
+    TextView textViewLogin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
 
+        // Initialize UI elements
         editTextUsername = findViewById(R.id.username);
         editTextEmail = findViewById(R.id.email);
         editTextPassword = findViewById(R.id.password);
         buttonRegister = findViewById(R.id.register);
+        textViewLogin = findViewById(R.id.login);
+        textViewLogin.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Register.this, Login.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
+
+        // Set click listener for register button
         buttonRegister.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -61,10 +76,12 @@ public class Register extends AppCompatActivity {
         });
     }
 
+    // Method to check if the email address is valid
     private boolean isValidEmail(CharSequence target) {
         return !TextUtils.isEmpty(target) && android.util.Patterns.EMAIL_ADDRESS.matcher(target).matches();
     }
 
+    // Method to send a registration request to the server
     private void registerUser() {
         RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
         String url = "http://192.168.1.109/R1SE-ANDROID-STUDIO/register.php";
@@ -73,12 +90,15 @@ public class Register extends AppCompatActivity {
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
+                        // Handle server response
                         if (response.equals("success")){
+                            // If registration is successful, show toast message and navigate to login screen
                             Toast.makeText(Register.this, "Registration successful", Toast.LENGTH_SHORT).show();
                             Intent intent = new Intent(Register.this, Login.class);
                             startActivity(intent);
-                            finish();
+                            finish(); // Finish the current activity
                         } else {
+                            // If registration fails, show error message
                             Toast.makeText(Register.this, "Registration failed: " + response, Toast.LENGTH_SHORT).show();
                         }
                     }
@@ -91,6 +111,7 @@ public class Register extends AppCompatActivity {
         }) {
             @Override
             protected Map<String, String> getParams() {
+                // Set parameters for the POST request
                 Map<String, String> params = new HashMap<>();
                 params.put("username", username);
                 params.put("email", email);
@@ -98,6 +119,7 @@ public class Register extends AppCompatActivity {
                 return params;
             }
         };
+        // Add the request to the RequestQueue
         queue.add(stringRequest);
     }
 }

@@ -16,6 +16,9 @@
         android:layout_marginTop="50dp"
         android:autofillHints=""
         android:hint="@string/enter_item"
+        android:textColorHint="@color/black"
+
+
         android:inputType="text"
         android:minHeight="48dp" />
 
@@ -27,6 +30,7 @@
         android:layout_marginTop="20dp"
         android:autofillHints=""
         android:hint="@string/enter_price"
+        android:textColorHint="@color/black"
         android:inputType="numberDecimal"
         android:minHeight="48dp" />
 

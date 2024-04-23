@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
         android:text="@string/registerText"
+        android:textColor="#FFFFFF"
         android:textSize="35sp"
         android:textStyle="bold" />
 
@@ -23,7 +24,9 @@
         android:autofillHints=""
         android:hint="@string/usernameReg"
         android:inputType="text"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/email"
@@ -34,7 +37,9 @@
         android:autofillHints=""
         android:hint="@string/emailReg"
         android:inputType="textEmailAddress"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:textColor="#000000" />
 
     <EditText
         android:id="@+id/password"
@@ -45,7 +50,10 @@
         android:autofillHints=""
         android:hint="@string/passwordReg"
         android:inputType="textPassword"
-        android:minHeight="48dp" />
+        android:minHeight="48dp"
+        android:textColorHint="@color/black"
+        android:textColor="#000000" />
+
 
     <Button
         android:id="@+id/register"
@@ -56,10 +64,10 @@
         android:layout_marginHorizontal="30dp"/>
 
     <TextView
-        android:id="@+id/textViewLogin"
+        android:id="@+id/login"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/already_have_an_account_login"
-        android:layout_marginTop="20dp" />
-
+        android:layout_marginTop="20dp"
+        android:textColor="#FFFFFF" />
 </LinearLayout>

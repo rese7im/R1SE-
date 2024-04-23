@@ -30,24 +30,30 @@ public class AddToList extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_to_list);
 
+        // Initialize UI elements
         editTextItem = findViewById(R.id.item);
         editTextPrice = findViewById(R.id.price);
         buttonAdd = findViewById(R.id.add);
+
+        // Set click listener for add button
         buttonAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                // Retrieve input values
                 item = editTextItem.getText().toString().trim();
                 price = editTextPrice.getText().toString().trim();
 
+                // Basic input validation
                 if (TextUtils.isEmpty(item) || TextUtils.isEmpty(price)) {
                     Toast.makeText(AddToList.this, "All fields are required", Toast.LENGTH_SHORT).show();
                     return;
                 }
 
+                // Send add item request
                 addItem();
             }
 
+            // Method to send a request to add an item to the list
             private void addItem() {
                 RequestQueue queue = Volley.newRequestQueue(getApplicationContext());
                 String url = "http://192.168.1.109/R1SE-ANDROID-STUDIO/additem.php";
@@ -56,9 +62,12 @@ public class AddToList extends AppCompatActivity {
                         new Response.Listener<String>() {
                             @Override
                             public void onResponse(String response) {
+                                // Handle server response
                                 if (response.equals("success")){
+                                    // If item is added successfully, show toast message
                                     Toast.makeText(AddToList.this, "Item added", Toast.LENGTH_SHORT).show();
                                 } else {
+                                    // If adding item fails, show error message
                                     Toast.makeText(AddToList.this, "Failed to add the item " + response, Toast.LENGTH_SHORT).show();
                                 }
                             }
@@ -76,12 +85,14 @@ public class AddToList extends AppCompatActivity {
                 }) {
                     @Override
                     protected Map<String, String> getParams() {
+                        // Set parameters for the POST request
                         Map<String, String> params = new HashMap<>();
                         params.put("item", item);
                         params.put("price", price);
                         return params;
                     }
                 };
+                // Add the request to the RequestQueue
                 queue.add(stringRequest);
             }
         });
